@@ -112,8 +112,26 @@ main {
     transition: background-color 0.3s, border-radius 0.3s;
 }
 
+body.dark-mode .uploadbutton {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, border-radius 0.3s;
+}
+
+
+
 .uploadbutton:hover {
     background-color: #444;
+}
+
+body.dark-mode .uploadbutton:hover {
+    background-color: darkred;
 }
 
 #video-upload {
@@ -133,8 +151,39 @@ main {
     transition: background-color 0.3s, border-radius 0.3s;
 }
 
+body.dark-mode .custom-upload-button {
+    display: inline-block;
+    background-color: red;
+    /* Background color for the button */
+    color: white;
+    /* Text color */
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, border-radius 0.3s;
+}
+
+body.dark-mode .custom-upload-button {
+    display: inline-block;
+    background-color: red;
+    /* Background color for the button */
+    color: white;
+    /* Text color */
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, border-radius 0.3s;
+}
+
 .custom-upload-button:hover {
     background-color: #444;
+    /* Hover color */
+}
+
+body.dark-mode .custom-upload-button:hover {
+    background-color: darkred;
     /* Hover color */
     color: white;
 }
