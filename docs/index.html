@@ -59,20 +59,6 @@
     </main>
 
     <script>
-        const ball = document.getElementById('rollingBall');
-        const welcomeText = document.getElementById('welcomeText');
-
-        // Set up an observer to detect when the ball is in view of the text area
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    welcomeText.classList.add('show-text');
-                }
-            });
-        }, { threshold: 0.5 });
-
-        observer.observe(ball);
-
         // Dark mode toggle functionality
         const darkModeToggle = document.getElementById('darkModeToggle');
 
@@ -151,6 +137,7 @@
                     players[3].style.top = '50%'; players[3].style.left = '80%';
                     players[4].style.top = '90%'; players[4].style.left = '47%';
                     break;
+
                 default:
                     break;
             }
