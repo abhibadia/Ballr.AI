@@ -71,7 +71,6 @@ header {
 }
 
 /* Styling for the nav links */
-/* Styling for the nav links */
 .nav-links {
     display: flex;
     gap: 1togg0px;
@@ -323,6 +322,8 @@ body.dark-mode .center-time::after {
     box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.7); /* Red glow effect */
     background-color: #f3f3f3; /* Light background for the court */
     overflow: hidden;
+    position: relative;
+    z-index: -1;
 }
 
 .basketball-court {
@@ -391,17 +392,12 @@ body.dark-mode .center-time::after {
     }
 }
 
-.welcome-text {
-    font-size: 2em;
-    font-weight: bold;
+#welcomeText {
     text-align: center;
-    opacity: 0;
-    transition: opacity 1s ease-in;
-    position: absolute;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
+    font-size: 2rem;
+    color: white; /* Change this to your desired color */
+    margin: 20px 0;
+    visibility: visible;
 }
 
 .ball-container {
@@ -410,11 +406,47 @@ body.dark-mode .center-time::after {
     height: 100%;
 }
 
-.ball {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background-image: url('ball.png');
-    background-size: cover;
-    animation: roll 5s linear infinite;
+.info-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin: 20px auto; /* Center the content horizontally */
+    max-width: 800px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: transparent; /* No visible box, only structure */
+    transition: background-color 0.7s, color 0.7s;
 }
+
+/* Dark mode adjustment */
+body.dark-mode .info-container {
+    background-color: #1a1a1a; /* Subtle dark background */
+    color: #f9f9f9; /* Light text */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.info-image {
+    width: 300px;
+    height: 375px;
+    border-radius: 8px;
+    margin-right: 16px;
+}
+
+.info-text {
+    text-align: left; /* Align text to the left */
+}
+
+.info-text h2 {
+    margin: 0 0 8px;
+    font-size: 2.5rem;
+    color: inherit; /* Inherit color for dark mode */
+}
+
+.info-text p {
+    margin: 0;
+    font-size: 1.25rem;
+    color: inherit; /* Inherit color for dark mode */
+}
+
+
+
