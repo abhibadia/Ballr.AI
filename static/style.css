@@ -352,7 +352,7 @@ body.dark-mode .center-time::after {
 .formation-buttons button {
     margin: 10px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     border: none;
     background-color: red;
@@ -406,16 +406,10 @@ body.dark-mode .center-time::after {
     height: 100%;
 }
 
-.info-container {
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    margin: 20px auto; /* Center the content horizontally */
-    max-width: 800px;
-    padding: 16px;
-    border-radius: 8px;
-    background-color: transparent; /* No visible box, only structure */
-    transition: background-color 0.7s, color 0.7s;
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
 }
 
 /* Dark mode adjustment */
@@ -425,9 +419,15 @@ body.dark-mode .info-container {
     transition: background-color 0.3s, color 0.3s;
 }
 
+.info-container {
+    position: relative;
+    display: inline-block;
+    width: fit-content; /* Ensures the container matches the image dimensions */
+}
+
 .info-image {
-    width: 300px;
-    height: 375px;
+    width: 1000px;
+    height: 600px;
     border-radius: 8px;
     margin-right: 16px;
 }
@@ -446,6 +446,66 @@ body.dark-mode .info-container {
     margin: 0;
     font-size: 1.25rem;
     color: inherit; /* Inherit color for dark mode */
+}
+
+.top-left {
+    position: absolute;
+    top: 70px; /* Adjust as needed */
+    left: 0; /* Align text to the left of the container */
+    width: max-content; /* Bound text width to content, adjust if necessary */
+    max-width: 35%; /* Ensure it doesn't extend too far; adjust percentage as needed */
+    text-align: left;
+    color: white; /* Change text color for contrast */
+    padding: 5px; /* Optional: Add padding */
+    font-size: 16px; /* Adjust text size */
+    z-index: 10; /* Ensure the text appears above the image */
+    word-wrap: break-word; /* Ensure long words wrap correctly */
+}
+
+.title-image {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    left: 0; /* Align text to the left of the container */
+    width: max-content; /* Bound text width to content, adjust if necessary */
+    max-width: 35%; /* Ensure it doesn't extend too far; adjust percentage as needed */
+    text-align: left;
+    color: white; /* Change text color for contrast */
+    padding: 5px; /* Optional: Add padding */
+    font-size: 48px; /* Adjust text size */
+    z-index: 10; /* Ensure the text appears above the image */
+    word-wrap: break-word; /* Ensure long words wrap correctly */
+}
+
+.translucent-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 37%; /* Covers the left 40% of the image */
+    height: 100%; /* Full height of the container */
+    background-color: rgba(0, 0, 0, 0.619); /* Adjust opacity and color as needed */
+    pointer-events: none; /* Ensure it doesn't block interactions */
+    z-index: 9; /* Ensure it appears above the image */
+}
+
+.lebron-button {
+    position: absolute;
+    top: 310px; /* Adjust as needed */
+    left: 0; /* Align text to the left of the container */
+    color: white; /* Change text color for contrast */
+    background-color: red;
+    padding: 5px; /* Optional: Add padding */
+    font-size: 12px; /* Adjust text size */
+    z-index: 10; /* Ensure the text appears above the image */
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    padding: 7px 15px;
+    text-decoration: none;
+    display: inline-block; /* Ensure proper button behavior */
+}
+
+.lebron-button button:hover {
+    background-color: blue;
 }
 
 
