@@ -113,14 +113,15 @@
 
         <div class="tenor-gif-wrapper" id="gifWrapper">
             <div class="tenor-gif-embed" 
-                 data-postid="13596181858079823880" 
-                 data-share-method="host" 
-                 data-aspect-ratio="0.5" 
-                 data-width="40%">
-                <a href="https://tenor.com/view/lbj-gif-13596181858079823880">Lbj GIF</a> 
+                data-postid="13596181858079823880" 
+                data-share-method="host" 
+                data-aspect-ratio="1" 
+                data-width="100%">
+                <a href="https://tenor.com/view/lbj-gif-13596181858079823880">Lbj GIF</a>
                 from <a href="https://tenor.com/search/lbj-gifs">Lbj GIFs</a>
             </div>
         </div>
+
         <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 
         <div class="slideshow_2" id="bottom">
@@ -264,22 +265,31 @@
 
         const scrollBtn = document.getElementById('scrollBtn');
         const gifWrapper = document.getElementById('gifWrapper');
-        const bottom = document.getElementById('bottom');
 
+        // Function to ensure the GIF wrapper becomes visible
+        function showGif() {
+            gifWrapper.classList.add('show');
+        }
+
+        // Function to hide the GIF wrapper
+        function hideGif() {
+            gifWrapper.classList.remove('show');
+        }
+
+        // Attach the scroll event logic
         scrollBtn.addEventListener('click', () => {
             // Show the GIF
-            gifWrapper.style.display = 'block';
+            showGif();
 
-            // Smooth scroll to the bottom
+            // Smooth scroll to the bottom of the page
             window.scrollTo({
-                top: bottom.offsetTop,
+                top: document.body.scrollHeight,
                 behavior: 'smooth',
             });
 
-            // Hide the GIF after the scrolling is done
-            setTimeout(() => {
-                gifWrapper.style.display = 'none';
-            }, 1000); // Adjust the time based on your animation duration
+            // Use a timer to hide the GIF after the scroll duration
+            const scrollDuration = 1000; // Adjust this based on your scrolling duration
+            setTimeout(hideGif, scrollDuration);
         });
 
     </script>

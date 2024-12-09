@@ -574,11 +574,17 @@ body.dark-mode .center-time::after {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    display: none; /* Initially hidden */
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.5s ease; /* Smooth transition for visibility */
+    pointer-events: none; /* Prevent interference with other elements */
+}
+
+.tenor-gif-wrapper.show {
+    opacity: 1; /* Make visible when class is added */
 }
 
 .tenor-gif-embed {
-    max-width: 300px; /* Adjust size */
+    max-width: 300px;
     max-height: 300px;
 }
 
