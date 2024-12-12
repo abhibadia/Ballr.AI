@@ -35,6 +35,13 @@
 
         <h1 class="welcome-text" id="welcomeText">Welcome to Ballr.AI</h1>
 
+        <h1>Drag-and-Drop File Uploader</h1>
+        <div id="drop-area">
+            Drag here to preview
+        </div>
+        <input type="file" id="file-input" multiple hidden>
+        <div id="preview-container"></div>
+
         <!-- Court and Players -->
         <div class="court-container">
             <div class="basketball-court">
@@ -291,6 +298,46 @@
             const scrollDuration = 1000; // Adjust this based on your scrolling duration
             setTimeout(hideGif, scrollDuration);
         });
+        
+        const dropArea = document.getElementById('drop-area');
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function isValidFileType(file) {
+        const allowedTypes = ['video/mp4', 'video/ogg', 'video/webm', 'video/mov'];
+        return allowedTypes.includes(file.type);
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+
+        const files = e.dataTransfer.files;
+        if (files.length) {
+            const file = files[0]; // Assume single file upload
+            if (isValidFileType(file)) {
+                const fileURL = URL.createObjectURL(file);
+
+                // Save the file URL in localStorage for access on the next page
+                localStorage.setItem('videoFile', fileURL);
+
+                // Redirect to upload.html
+                window.location.href = 'upload.html';
+            } else {
+                alert('Invalid file type. Please upload a video file.');
+            }
+        }
+    }
+
+    // Attach drag-and-drop events
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    dropArea.addEventListener('drop', handleDrop, false);
+
 
     </script>
 </body>

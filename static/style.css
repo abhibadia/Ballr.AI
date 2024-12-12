@@ -510,32 +510,42 @@ body.dark-mode .center-time::after {
     }
 }
 
-.slide:nth-child(1) {
+.slide:nth-child(1), .slide_2:nth-child(1) {
     animation-delay: 0s;
 }
 
-.slide:nth-child(2) {
+.slide:nth-child(2), .slide_2:nth-child(2) {
     animation-delay: 12s; /* Adjust based on the total duration */
 }
 
-.slide:nth-child(3) {
+.slide:nth-child(3), .slide_2:nth-child(3) {
     animation-delay: 24s; /* Adjust based on the total duration */
 }
 
-.slide:nth-child(4) {
+.slide:nth-child(4), .slide_2:nth-child(4) {
     animation-delay: 36s; /* Adjust based on the total duration */
 }
 
-.slide:nth-child(5) {
+.slide:nth-child(5), .slide_2:nth-child(5) {
     animation-delay: 48s; /* Adjust based on the total duration */
 }
 
 /* Adjust the total duration of the animation for seamless looping */
-.slide {
+.slide, .slide_2 {
     animation: fadeInOut 60s infinite; /* Total duration = number of slides * individual duration */
 }
 
 .slide img {
+    width: 100%; /* Full width of the slide */
+    height: 100%; /* Full height of the slide */
+    object-fit: cover; /* Ensure the image fills without distortion */
+    position: absolute; /* Position image behind other content */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    z-index: -1; /* Ensure it's behind text and overlay */
+}
+
+.slide_2 img {
     width: 100%; /* Full width of the slide */
     height: 100%; /* Full height of the slide */
     object-fit: cover; /* Ensure the image fills without distortion */
@@ -595,4 +605,31 @@ body.dark-mode .center-time::after {
 /* Optional: Prevent pointer events on hover */
 .tenor-gif-embed a {
     pointer-events: none;
+}
+
+#drop-area {
+    width: 400px;
+    height: 200px;
+    margin: 20px auto;
+    text-align: center;
+    line-height: 200px;
+    border: 2px dashed #ccc;
+    cursor: pointer;
+  }
+  
+  #preview-container {
+    text-align: center;
+  }
+
+  .preview-image {
+    object-fit: cover;
+    width: 1000px;
+    height: 1000px;
+    margin: 10px;
+    border: 1px solid #ddd;
+  }
+
+  #drop-area.drag-over {
+    border-color: #6c6;
+    background-color: #f8fff8;
 }

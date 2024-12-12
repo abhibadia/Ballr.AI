@@ -64,9 +64,12 @@
         updateTime();
     </script>
 
-    <audio id="background-music" autoplay loop>
-        <source id="audio-source" src="/static/music/song1.mp3" type="audio/mp3">
+    <audio id="background-music" loop>
+        <source id="audio-source" src="" type="audio/mp3">
+        Your browser does not support the audio element.
     </audio>
+
+    <button id="play-music" onclick="toggleMusic()">Play Music</button>
 
     <main>
         <h1>Upload Your Video</h1>
@@ -90,13 +93,14 @@
         // Playlist logic for background music
         const playlist = [
             '/static/music/song1.mp3',
-            '/static/music/song2.mp3',
-            '/static/music/song3.mp3'
+            '/static/music/song2.m4a',
         ];
 
         let currentSongIndex = 0;
         const audio = document.getElementById('background-music');
         const audioSource = document.getElementById('audio-source');
+        const playMusicButton = document.getElementById('play-music');
+        let isPlaying = false;
 
         function playNextSong() {
             currentSongIndex = (currentSongIndex + 1) % playlist.length;
@@ -105,11 +109,23 @@
             audio.play();
         }
 
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                playMusicButton.textContent = 'Play Music';
+            } else {
+                audioSource.src = playlist[currentSongIndex];
+                audio.load();
+                audio.play().catch((error) => {
+                    console.error("Error playing audio:", error);
+                });
+                playMusicButton.textContent = 'Pause Music';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Auto-advance to the next song
         audio.addEventListener('ended', playNextSong);
-        window.onload = function () {
-            audioSource.src = playlist[currentSongIndex];
-            audio.play();
-        };
 
         // Video Preview Logic
         function previewVideo(event) {
@@ -125,23 +141,33 @@
         }
 
         // AJAX upload and call video analysis
-        function uploadVideo() {
-            const form = document.getElementById('upload-form');
-            const formData = new FormData(form);
+        window.onload = function () {
+            const fileURL = localStorage.getItem('videoFile');
+            console.log("Retrieved File URL: ", fileURL);
 
-            // Send video file via AJAX to Flask backend
-            fetch('/upload', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('status-message').innerText = data;
-                })
-                .catch(error => {
-                    document.getElementById('status-message').innerText = 'Error: ' + error;
+            if (fileURL) {
+                const videoPreviewContainer = document.getElementById('video-preview-container');
+                const videoPreview = document.getElementById('video-preview');
+
+                videoPreview.src = fileURL;
+
+                // Debug event listeners
+                videoPreview.addEventListener('error', (e) => {
+                    console.error('Error loading video:', e);
                 });
-        }
+
+                videoPreview.addEventListener('loadeddata', () => {
+                    console.log('Video loaded successfully');
+                    videoPreviewContainer.style.display = 'block'; // Show video preview
+                });
+
+                videoPreviewContainer.style.display = 'block'; // Show video container
+            } else {
+                console.error('No video file found. Redirecting to index.html.');
+                window.location.href = 'index.html';
+            }
+        };
+
     </script>
 </body>
 
