@@ -142,31 +142,31 @@
 
         // AJAX upload and call video analysis
         window.onload = function () {
-            const fileURL = localStorage.getItem('videoFile');
-            console.log("Retrieved File URL: ", fileURL);
+            const audio = document.getElementById('background-music');
+            const audioSource = document.getElementById('audio-source');
+            const playlist = [
+                '/static/music/song1.mp3',
+                '/static/music/song2.mp3',
+            ];
+            let currentSongIndex = 0;
 
-            if (fileURL) {
-                const videoPreviewContainer = document.getElementById('video-preview-container');
-                const videoPreview = document.getElementById('video-preview');
+            audioSource.src = playlist[currentSongIndex];
+            audio.load();
 
-                videoPreview.src = fileURL;
+            // Attempt to unmute after user interaction
+            document.body.addEventListener('click', () => {
+                audio.muted = false;
+                audio.play();
+            });
 
-                // Debug event listeners
-                videoPreview.addEventListener('error', (e) => {
-                    console.error('Error loading video:', e);
-                });
-
-                videoPreview.addEventListener('loadeddata', () => {
-                    console.log('Video loaded successfully');
-                    videoPreviewContainer.style.display = 'block'; // Show video preview
-                });
-
-                videoPreviewContainer.style.display = 'block'; // Show video container
-            } else {
-                console.error('No video file found. Redirecting to index.html.');
-                window.location.href = 'index.html';
-            }
+            audio.addEventListener('ended', () => {
+                currentSongIndex = (currentSongIndex + 1) % playlist.length;
+                audioSource.src = playlist[currentSongIndex];
+                audio.load();
+                audio.play();
+            });
         };
+
 
     </script>
 </body>
